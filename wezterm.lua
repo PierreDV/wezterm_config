@@ -36,6 +36,8 @@ local function split_nav(resize_or_move, key)
 end
 
 config.color_scheme = "rose-pine"
+config.font = wezterm.font("Fira Code")
+config.font_size = 13.0
 config.leader = { key = "s", mods = "CTRL" }
 --config.use_fancy_tab_bar = false
 
