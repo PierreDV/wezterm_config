@@ -35,17 +35,13 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
-wezterm.on("update-right-status", function(window, pane)
-	window:set_right_status(window:active_workspace())
-end)
-
 config.color_scheme = "rose-pine"
 config.leader = { key = "s", mods = "CTRL" }
 --config.use_fancy_tab_bar = false
 
---wezterm.on("update-right-status", function(window)
---	window:set_right_status(window:active_workspace())
---end)
+wezterm.on("update-right-status", function(window)
+	window:set_right_status(window:active_workspace() .. "   ")
+end)
 
 config.keys = {
 	{ key = "-", mods = "LEADER", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
