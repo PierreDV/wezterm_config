@@ -39,7 +39,6 @@ config.color_scheme = "rose-pine"
 config.font = wezterm.font("Fira Code")
 config.font_size = 13.0
 config.leader = { key = "s", mods = "CTRL" }
---config.use_fancy_tab_bar = false
 
 wezterm.on("update-right-status", function(window)
   window:set_right_status(window:active_workspace() .. "   ")
@@ -67,7 +66,7 @@ config.keys = {
         { Foreground = { AnsiColor = "Fuchsia" } },
         { Text = "Enter new name for workspace" },
       }),
-      initial_value = wezterm.mux.get_active_workspace(),
+      initial_value = wezterm.mux.get_active_workspace(), -- only works for nightly build
       action = wezterm.action_callback(function(_window, _pane, line)
         if line then
           wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
