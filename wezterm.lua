@@ -67,6 +67,7 @@ config.keys = {
         { Foreground = { AnsiColor = "Fuchsia" } },
         { Text = "Enter new name for workspace" },
       }),
+      initial_value = wezterm.mux.get_active_workspace(),
       action = wezterm.action_callback(function(_window, _pane, line)
         if line then
           wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
