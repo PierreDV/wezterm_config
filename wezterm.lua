@@ -35,9 +35,9 @@ local function split_nav(resize_or_move, key)
   }
 end
 
-config.color_scheme = "rose-pine"
 config.font = wezterm.font("Fira Code")
 config.font_size = 13.0
+config.color_scheme = "catppuccin-mocha"
 config.leader = { key = "s", mods = "CTRL" }
 
 wezterm.on("update-right-status", function(window)
@@ -51,11 +51,6 @@ config.keys = {
     mods = "LEADER",
     action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
-  {
-    key = "c",
-    mods = "LEADER",
-    action = action.SpawnTab("CurrentPaneDomain"),
-  },
   { key = "x", mods = "LEADER", action = action.CloseCurrentPane({ confirm = false }) },
   {
     key = "$",
@@ -66,7 +61,6 @@ config.keys = {
         { Foreground = { AnsiColor = "Fuchsia" } },
         { Text = "Enter new name for workspace" },
       }),
-      initial_value = wezterm.mux.get_active_workspace(), -- only works for nightly build
       action = wezterm.action_callback(function(_window, _pane, line)
         if line then
           wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
@@ -96,11 +90,21 @@ config.keys = {
     }),
   },
   {
+    key = "t",
+    mods = "LEADER",
+    action = action.SpawnTab("CurrentPaneDomain"),
+  },
+  {
     key = "s",
     mods = "LEADER",
     action = action.ShowLauncherArgs({
       flags = "WORKSPACES",
     }),
+  },
+  {
+    key = "c",
+    mods = "LEADER",
+    action = action.ActivateCopyMode,
   },
   split_nav("move", "h"),
   split_nav("move", "j"),
